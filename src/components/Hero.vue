@@ -1,15 +1,15 @@
 <template>
-  <section id="hero" class="min-h-screen flex items-center justify-center px-6">
+  <section id="hero" class="min-h-screen flex items-center justify-center">
     <div
       v-reveal.once="{ threshold: 0.15 }"
-      class="w-full max-w-xl text-center py-12 rounded-2xl
-             bg-white/60 dark:bg-[#041028]/80 backdrop-blur-sm
+      class="w-full text-center py-12
+             bg-white/60 dark:bg-[#041028]/80
              shadow-lg"
     >
       <div class="flex justify-center -mt-16">
         <div
           class="relative rounded-full ring-4 ring-white dark:ring-slate-900
-                 overflow-hidden w-40 h-40 md:w-48 md:h-48 shadow-xl"
+                 overflow-hidden w-40 h-40 md:w-68 md:h-68 shadow-xl"
         >
           <img :src="imgSrc" :alt="name" class="w-full h-full object-cover" loading="lazy" />
         </div>
