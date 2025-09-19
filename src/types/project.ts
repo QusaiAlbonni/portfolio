@@ -4,4 +4,7 @@ export interface Project {
   description: string
   img: string
   skills: string[]
+  demoUrl?: string;
+  repoUrl?: string;
+  longNotes?: string;
 }

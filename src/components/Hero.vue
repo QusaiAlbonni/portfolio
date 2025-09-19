@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 
-const props = defineProps({
+ defineProps({
   name: { type: String, default: 'Your Name' },
   role: { type: String, default: 'Frontend Developer' },
   quote: { type: String, default: 'A small word of wisdom or a personal tagline.' },

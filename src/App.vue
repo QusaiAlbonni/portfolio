@@ -2,9 +2,11 @@
 import Header from './components/Header.vue';
 import Hero from './components/Hero.vue'
 import About from './components/About.vue';
+import Contact from './components/Contact.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
 import { ref, onMounted, watch } from 'vue'
 import { projects } from './data/projects';
+import { socialLinks } from './data/social-links';
 
 const isDark = ref(false)
 
@@ -54,12 +56,7 @@ function updateBodyClass() {
     <main class="">
       <About @skillClick="findNearestProjectBySkill"/>
       <ProjectsSection :projects="projects" @skillClick="findNearestProjectBySkill" githubUrl="https://github.com/QusaiAlbonni"></ProjectsSection>
-      <section
-        class="h-screen bg-gradient-to-tr from-indigo-200 via-sky-200 to-cyan-200 flex items-center justify-center">
-        <button class="px-6 py-3 rounded-lg bg-indigo-600 text-white shadow-lg hover:bg-indigo-500">
-          Call to Action
-        </button>
-      </section>
+      <Contact :socialLinks="socialLinks" email="albonniqusai@gmail.com"/>
     </main>
 
   </div>

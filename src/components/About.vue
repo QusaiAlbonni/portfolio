@@ -45,9 +45,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-const props = defineProps({
-  bio: { type: String, default: "I'm a Backend engineer focused on building fast scalable apps with great attention to detail and problem solving!" },
+defineProps({
+  bio: { type: String, default: "I'm a Backend engineer focused on building fast scalable apps ready to solve real issues." },
   subtitle: { type: String, default: 'Backend / Fullstack • NodeJS + VueJS' },
   skills: {
     type: Array as () => string[],
