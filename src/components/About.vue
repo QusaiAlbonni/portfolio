@@ -13,8 +13,12 @@
         </p>
       </header>
 
-      <div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 mb-6">
+      <div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 mb-6 text-center">
         <p>{{ bio }}</p>
+      </div>
+
+      <div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-200 mb-6 text-center">
+        <p>click a skill to jump to projects.</p>
       </div>
 
       <div class="flex flex-wrap gap-3 justify-center">
@@ -41,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, computed } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 const props = defineProps({
   bio: { type: String, default: "I'm a Backend engineer focused on building fast scalable apps with great attention to detail and problem solving!" },
   subtitle: { type: String, default: 'Backend / Fullstack • NodeJS + VueJS' },

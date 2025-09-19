@@ -2,7 +2,9 @@
 import Header from './components/Header.vue';
 import Hero from './components/Hero.vue'
 import About from './components/About.vue';
+import ProjectsSection from './components/ProjectsSection.vue';
 import { ref, onMounted, watch } from 'vue'
+import { projects } from './data/projects';
 
 const isDark = ref(false)
 
@@ -28,6 +30,16 @@ function toggleTheme() {
   isDark.value = !isDark.value
 }
 
+function findNearestProjectBySkill(skill: string) {
+  window.location.hash = '';
+  const projectId: string | null = projects.find(project => project.skills.includes(skill))?.id ?? null;
+  if (!projectId) {
+    window.location.hash = "more"
+    return
+  }
+  window.location.hash = projectId;
+}
+
 function updateBodyClass() {
   const html = document.documentElement
   if (isDark.value) html.classList.add('dark')
@@ -38,21 +50,10 @@ function updateBodyClass() {
 <template>
   <div>
     <Header :isDark="isDark" @toggleTheme="toggleTheme" />
-    <Hero
-      :name="name"
-      :role="role"
-      :quote="quote"
-      :imgSrc="imgSrc"
-      :isDark="isDark"
-      @toggleTheme="toggleTheme"
-    />
+    <Hero :name="name" :role="role" :quote="quote" :imgSrc="imgSrc" :isDark="isDark" @toggleTheme="toggleTheme" />
     <main class="">
-      <About />
-      <section id= "projects"
-        class="h-screen bg-gradient-to-r from-yellow-200 via-green-200 to-teal-200 flex items-center justify-center">
-        <p class="text-xl text-gray-700 dark:text-gray-200">Scroll to see the navbar effect</p>
-      </section>
-
+      <About @skillClick="findNearestProjectBySkill"/>
+      <ProjectsSection :projects="projects" @skillClick="findNearestProjectBySkill" githubUrl="https://github.com/QusaiAlbonni"></ProjectsSection>
       <section
         class="h-screen bg-gradient-to-tr from-indigo-200 via-sky-200 to-cyan-200 flex items-center justify-center">
         <button class="px-6 py-3 rounded-lg bg-indigo-600 text-white shadow-lg hover:bg-indigo-500">

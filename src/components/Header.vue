@@ -13,9 +13,9 @@ function toggleMobile() { mobileOpen.value = !mobileOpen.value; }
   <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-3 h-14
            bg-white/10 dark:bg-gray-800/10 backdrop-blur-md isolate" role="navigation" aria-label="Main navigation">
     <div class="flex items-center gap-4 min-w-0">
-      <a href="#" class="text-xl font-bold tracking-tight flex-shrink-0 -mt-0.5">
+      <a href="#" class="text-md md:text-xl font-bold tracking-tight flex-shrink-0 -mt-0.5">
         <span class="bg-clip-text text-gray-800 dark:text-gray-100 transition-colors duration-200 text-shadow-lg group">
-          Name
+          Portfolio 
         </span>
       </a>
     </div>
@@ -39,9 +39,12 @@ function toggleMobile() { mobileOpen.value = !mobileOpen.value; }
     </ul>
 
     <div class="flex items-center gap-4">
-      <button @click="$emit('toggleTheme')" aria-label="Toggle theme" class="relative w-20 h-10 flex items-center rounded-full p-1 transition-all duration-400
-                     focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900
-                     active:scale-95 flex-shrink-0"
+      <button
+        @click="$emit('toggleTheme')"
+        aria-label="Toggle theme"
+        class="hidden md:inline-flex relative w-20 h-10 flex items-center rounded-full p-1 transition-all duration-400
+               focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900
+               active:scale-95 flex-shrink-0"
         :class="isDark ? 'bg-gray-950/80 shadow-inner' : 'bg-gradient-to-r from-yellow-300 to-yellow-400 shadow'">
         <div
           class="relative w-8 h-8 rounded-full shadow-md flex items-center justify-center transition-transform duration-500"
@@ -54,6 +57,16 @@ function toggleMobile() { mobileOpen.value = !mobileOpen.value; }
 
         <span v-if="isDark" class="absolute -inset-0.5 rounded-full pointer-events-none blur-[6px] opacity-20"
           style="background: linear-gradient(90deg, rgba(255,223,93,0.08), rgba(99,102,241,0.06));"></span>
+      </button>
+
+      <button
+        @click="$emit('toggleTheme')"
+        aria-label="Toggle theme"
+        class="inline-flex md:hidden items-center justify-center w-10 h-10 rounded-full transition-all duration-300
+               focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900
+               flex-shrink-0"
+        :class="isDark ? 'bg-slate-900 text-yellow-300 shadow' : 'bg-yellow-50 text-yellow-500 shadow'">
+        <span class="text-lg">{{isDark ? '🌙' : '☀️'}}</span>
       </button>
 
       <button
@@ -75,8 +88,8 @@ function toggleMobile() { mobileOpen.value = !mobileOpen.value; }
   <Transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0 -translate-y-2"
     enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-150 ease-in"
     leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 -translate-y-2">
-    <div v-show="mobileOpen" id="mobile-menu" class="md:hidden mt-14">
-      <div class="px-4 pb-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm shadow-sm rounded-b-md">
+    <div v-show="mobileOpen" id="mobile-menu" class="md:hidden mt-14 fixed z-10 w-full">
+      <div class="px-4 pb-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-md shadow-sm rounded-b-md ">
         <ul class="flex flex-col gap-2">
           <li v-for="(label, i) in ['about', 'projects', 'contact']" :key="'m-' + i">
             <a @click="mobileOpen = false" :href="`#${label}`"
