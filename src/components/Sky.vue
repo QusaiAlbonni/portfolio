@@ -1,3 +1,94 @@
+<script setup lang="ts">
+import { ref, onMounted, watch, type Ref } from 'vue'
+
+const props = defineProps({
+  isDark: { type: Boolean, default: false }
+})
+
+const items: Ref<any> = ref([])
+let idCounter = 0
+
+const largeCloudDur1 = ref(60)
+const largeCloudDur2 = ref(90)
+
+function rand(min: number, max: number) { return Math.random() * (max - min) + min }
+
+function makeItem(isDark: boolean) {
+  idCounter += 1
+  const left = rand(-6, 106)
+  const top = rand(-8, 108)
+
+  let type, cssClass
+  const pick = Math.random()
+  if (!isDark) {
+    if (pick < 0.5) { type = 'cloud'; cssClass = 'motif-cloud' }
+    else { type = 'spark'; cssClass = 'motif-spark' }
+  } else {
+    if (pick < 0.42) { type = 'crescent'; cssClass = 'motif-crescent' }
+    else { type = 'star'; cssClass = 'motif-star' }
+  }
+
+  let size, opacity
+  if (type === 'cloud') { size = Math.round(rand(48, 128)); opacity = rand(isDark ? 0.08 : 0.5, isDark ? 0.22 : 0.95) }
+  else if (type === 'spark') { size = Math.round(rand(14, 36)); opacity = rand(0.6, 1) }
+  else if (type === 'crescent') { size = Math.round(rand(28, 72)); opacity = rand(0.15, 0.95) }
+  else { size = Math.round(rand(6, 26)); opacity = rand(isDark ? 0.45 : 0.85, 1) }
+
+  const horizAmp = Math.round(rand(8, 48))
+  const vertAmp = Math.round(rand(4, 18))
+  const rotateAmp = Math.round(rand(-12, 12))
+  const duration = +(rand(10, 38)).toFixed(2)
+  const delay = +(rand(-24, 6)).toFixed(2)
+  const twinkleSpeed = +(rand(2.4, 6.6)).toFixed(2)
+  const pulseSpeed = +(rand(4.6, 12)).toFixed(2)
+
+  return {
+    id: idCounter,
+    left, top, size, opacity,
+    type, cssClass,
+    horizAmp, vertAmp, rotateAmp, duration, delay, twinkleSpeed, pulseSpeed
+  }
+}
+
+function generateItems(isDark: boolean) {
+  const count = isDark ? 42 : 42
+  items.value = []
+  for (let i = 0; i < count; i++) items.value.push(makeItem(isDark))
+}
+
+function generateLargeCloudDurations(isDark: boolean) {
+  largeCloudDur1.value = Math.round(rand(isDark ? 80 : 48, isDark ? 140 : 86))
+  largeCloudDur2.value = Math.round(rand(isDark ? 110 : 72, isDark ? 200 : 130))
+}
+
+function itemStyle(item: any) {
+  return {
+    left: item.left + '%',
+    top: item.top + '%',
+    width: item.size + 'px',
+    height: item.size + 'px',
+    opacity: item.opacity,
+    '--h-amp': item.horizAmp + 'px',
+    '--v-amp': item.vertAmp + 'px',
+    '--rot-amp': item.rotateAmp + 'deg',
+    '--motion-dur': item.duration + 's',
+    '--motion-delay': item.delay + 's',
+    '--twinkle-dur': item.twinkleSpeed + 's',
+    '--pulse-dur': item.pulseSpeed + 's'
+  }
+}
+
+onMounted(() => {
+  generateLargeCloudDurations(props.isDark)
+  generateItems(props.isDark)
+})
+
+watch(() => props.isDark, (v) => {
+  generateLargeCloudDurations(v)
+  generateItems(v)
+})
+</script>
+
 <template>
   <div aria-hidden="true" class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
     <div :class="[
@@ -100,96 +191,7 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, watch } from 'vue'
 
-const props = defineProps({
-  isDark: { type: Boolean, default: false }
-})
-
-const items = ref([])
-let idCounter = 0
-
-const largeCloudDur1 = ref(60)
-const largeCloudDur2 = ref(90)
-
-function rand(min, max) { return Math.random() * (max - min) + min }
-
-function makeItem(isDark) {
-  idCounter += 1
-  const left = rand(-6, 106)
-  const top = rand(-8, 108)
-
-  let type, cssClass
-  const pick = Math.random()
-  if (!isDark) {
-    if (pick < 0.5) { type = 'cloud'; cssClass = 'motif-cloud' }
-    else { type = 'spark'; cssClass = 'motif-spark' }
-  } else {
-    if (pick < 0.42) { type = 'crescent'; cssClass = 'motif-crescent' }
-    else { type = 'star'; cssClass = 'motif-star' }
-  }
-
-  let size, opacity
-  if (type === 'cloud') { size = Math.round(rand(48, 128)); opacity = rand(isDark ? 0.08 : 0.5, isDark ? 0.22 : 0.95) }
-  else if (type === 'spark') { size = Math.round(rand(14, 36)); opacity = rand(0.6, 1) }
-  else if (type === 'crescent') { size = Math.round(rand(28, 72)); opacity = rand(0.15, 0.95) }
-  else { size = Math.round(rand(6, 26)); opacity = rand(isDark ? 0.45 : 0.85, 1) }
-
-  const horizAmp = Math.round(rand(8, 48))
-  const vertAmp = Math.round(rand(4, 18))
-  const rotateAmp = Math.round(rand(-12, 12))
-  const duration = +(rand(10, 38)).toFixed(2)
-  const delay = +(rand(-24, 6)).toFixed(2)
-  const twinkleSpeed = +(rand(2.4, 6.6)).toFixed(2)
-  const pulseSpeed = +(rand(4.6, 12)).toFixed(2)
-
-  return {
-    id: idCounter,
-    left, top, size, opacity,
-    type, cssClass,
-    horizAmp, vertAmp, rotateAmp, duration, delay, twinkleSpeed, pulseSpeed
-  }
-}
-
-function generateItems(isDark) {
-  const count = isDark ? 42 : 42
-  items.value = []
-  for (let i = 0; i < count; i++) items.value.push(makeItem(isDark))
-}
-
-function generateLargeCloudDurations(isDark) {
-  largeCloudDur1.value = Math.round(rand(isDark ? 80 : 48, isDark ? 140 : 86))
-  largeCloudDur2.value = Math.round(rand(isDark ? 110 : 72, isDark ? 200 : 130))
-}
-
-function itemStyle(item) {
-  return {
-    left: item.left + '%',
-    top: item.top + '%',
-    width: item.size + 'px',
-    height: item.size + 'px',
-    opacity: item.opacity,
-    '--h-amp': item.horizAmp + 'px',
-    '--v-amp': item.vertAmp + 'px',
-    '--rot-amp': item.rotateAmp + 'deg',
-    '--motion-dur': item.duration + 's',
-    '--motion-delay': item.delay + 's',
-    '--twinkle-dur': item.twinkleSpeed + 's',
-    '--pulse-dur': item.pulseSpeed + 's'
-  }
-}
-
-onMounted(() => {
-  generateLargeCloudDurations(props.isDark)
-  generateItems(props.isDark)
-})
-
-watch(() => props.isDark, (v) => {
-  generateLargeCloudDurations(v)
-  generateItems(v)
-})
-</script>
 
 <style scoped>
 .will-change-transform {
