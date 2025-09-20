@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { SocialLinks } from '../types/social-links';
+import type { Email } from '../types/email';
 
 const props = defineProps<{
   socialLinks?: SocialLinks
   email?: string
-  sendEmail?: (payload: { name: string; email: string; subject?: string; message: string }) => Promise<void>
+  sendEmail?: (payload: Email) => Promise<void>
 }>()
 
 const emit = defineEmits<{
@@ -147,13 +148,13 @@ async function onSubmit() {
             class="w-full px-3 py-2 rounded-md border border-gray-200 dark:border-slate-700 bg-white/60 dark:bg-white/3 text-gray-800 dark:text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300"></textarea>
         </label>
 
-        <div class="flex items-center gap-3">
-          <button :disabled="sending" type="submit" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm
-                   text-gray-800 dark:text-gray-100 transition-colors duration-200
-                   hover:text-yellow-500 dark:hover:text-yellow-400
-                   bg-white/60 dark:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300">
-            <svg v-if="!sending" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor">
+        <div class="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+          <button :disabled="sending" type="submit" class="w-full md:w-auto inline-flex justify-center items-center gap-2 px-4 py-3 md:py-2 rounded-md text-sm
+           text-gray-800 dark:text-gray-100 transition-colors duration-200
+           hover:text-yellow-500 dark:hover:text-yellow-400
+           bg-white/60 dark:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300">
+            <svg v-if="!sending" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-4 md:h-4" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor">
               <path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
               <path d="M22 2L15 22l-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
             </svg>
@@ -164,17 +165,19 @@ async function onSubmit() {
             <span>{{ sending ? 'Sending...' : 'Send message' }}</span>
           </button>
 
-          <button type="button" @click="openMailClient" class="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm
-                   text-gray-800 dark:text-gray-100 transition-colors duration-200
-                   hover:text-yellow-500 dark:hover:text-yellow-400
-                   bg-white/50 dark:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300">
+          <button type="button" @click="openMailClient" class="w-full md:w-auto inline-flex justify-center items-center gap-2 px-4 py-3 md:py-2 rounded-md text-sm
+           text-gray-800 dark:text-gray-100 transition-colors duration-200
+           hover:text-yellow-500 dark:hover:text-yellow-400
+           bg-white/50 dark:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300">
             ✉️ Open mail client
           </button>
 
-          <div v-if="statusMessage" class="ml-auto text-sm text-gray-700 dark:text-gray-200">
+          <div v-if="statusMessage"
+            class="mt-2 md:mt-0 md:ml-auto text-sm text-gray-700 dark:text-gray-200 text-center md:text-left">
             {{ statusMessage }}
           </div>
         </div>
+
       </form>
     </div>
   </section>

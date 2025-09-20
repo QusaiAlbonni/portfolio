@@ -4,9 +4,11 @@ import Hero from './components/Hero.vue'
 import About from './components/About.vue';
 import Contact from './components/Contact.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
+import Sky from './components/Sky.vue';
 import { ref, onMounted, watch } from 'vue'
 import { projects } from './data/projects';
 import { socialLinks } from './data/social-links';
+import { contact } from './api/contact';
 
 const isDark = ref(false)
 
@@ -51,12 +53,14 @@ function updateBodyClass() {
 
 <template>
   <div>
+    <Sky :isDark="isDark" />
     <Header :isDark="isDark" @toggleTheme="toggleTheme" />
     <Hero :name="name" :role="role" :quote="quote" :imgSrc="imgSrc" :isDark="isDark" @toggleTheme="toggleTheme" />
-    <main class="">
-      <About @skillClick="findNearestProjectBySkill"/>
-      <ProjectsSection :projects="projects" @skillClick="findNearestProjectBySkill" githubUrl="https://github.com/QusaiAlbonni"></ProjectsSection>
-      <Contact :socialLinks="socialLinks" email="albonniqusai@gmail.com"/>
+    <main>
+      <About @skillClick="findNearestProjectBySkill" />
+      <ProjectsSection :projects="projects" @skillClick="findNearestProjectBySkill"
+        githubUrl="https://github.com/QusaiAlbonni"></ProjectsSection>
+      <Contact :socialLinks="socialLinks" email="albonniqusai@gmail.com" :sendEmail="contact"/>
     </main>
 
   </div>

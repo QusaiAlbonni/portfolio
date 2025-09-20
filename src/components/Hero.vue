@@ -4,6 +4,7 @@
       v-reveal.once="{ threshold: 0.15 }"
       class="w-full text-center py-12
              bg-white/60 dark:bg-[#041028]/80
+             backdrop-blur-md
              shadow-lg"
     >
       <div class="flex justify-center -mt-16">

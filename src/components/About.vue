@@ -1,5 +1,5 @@
 <template>
-  <section id="about" class="py-10 px-6">
+  <section id="about" class="py-10 px-6 backdrop-blur-lg">
     <div
       v-reveal="{ threshold: 0.12, transition: 'transition-all duration-[1s] ease-out' }"
       class="max-w-4xl mx-auto p-8 "
