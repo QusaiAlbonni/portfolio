@@ -51,7 +51,7 @@ function makeItem(isDark: boolean) {
 }
 
 function generateItems(isDark: boolean) {
-  const count = isDark ? 42 : 42
+  const count = isDark ? 30 : 30
   items.value = []
   for (let i = 0; i < count; i++) items.value.push(makeItem(isDark))
 }
