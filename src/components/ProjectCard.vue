@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import GalleryCarousel from './GalleryCarousel.vue';
 import { ref, onMounted, onBeforeUnmount, computed, watch, nextTick, watchEffect, type Ref } from 'vue'
@@ -21,8 +20,8 @@ function onSkillClick(skill: string) {
   emit('skillClick', skill)
 }
 
-async function renderMd(){
-  console.log(`project id ${props.project.id}`,props.project.md)
+async function renderMd() {
+  console.log(`project id ${props.project.id}`, props.project.md)
   parsedMd.value = props.project.md ? await marked(props.project.md) : props.project.description
 }
 
@@ -180,13 +179,14 @@ function onGalleryImageClick(index: number) {
           }" ref="root" role="article">
     <header class="flex flex-col md:flex-row gap-6">
       <div class="w-full md:w-1/3 flex items-center justify-center">
-        <div class="w-full h-48 rounded-md overflow-hidden bg-gray-100 dark:bg-slate-800 relative"
+        <div class="w-full h-48 rounded-md overflow-hidden bg-transparent relative"
           :style="{ perspective: prefersReducedMotion ? 'none' : '1000px' }">
           <img :src="project.img" :alt="project.title"
-            class="w-full h-full object-cover transition-transform duration-400 transform will-change-transform group-hover:scale-105"
+            class="w-full h-full object-contain transition-transform duration-400 transform will-change-transform group-hover:scale-105"
             loading="lazy" @pointermove="onPointerMove" @pointerleave="onPointerLeave" :style="imgStyle" />
         </div>
       </div>
+
 
       <div class="flex-1">
         <h3 :id="`title-${project.id}`" class="text-xl font-bold text-gray-900 dark:text-gray-100">
@@ -242,9 +242,11 @@ function onGalleryImageClick(index: number) {
               Close
             </button>
           </header>
+          <GalleryCarousel ref="galleryRef" :gallery="project.gallery ?? []" @image-click="onGalleryImageClick" />
 
           <div class="mt-4 text-sm text-slate-700 dark:text-slate-200">
-            <div v-html="parsedMd" class="markdown-body !rounded-xl p-5 !bg-transparent !text-slate-700 dark:!text-slate-200" ></div>
+            <div v-html="parsedMd"
+              class="markdown-body !rounded-xl p-5 !bg-transparent !text-slate-700 dark:!text-slate-200"></div>
 
             <div class="mt-4">
               <h5 class="font-medium mb-2">Skills</h5>
@@ -263,7 +265,6 @@ function onGalleryImageClick(index: number) {
               <p class="text-sm">{{ project.longNotes }}</p>
             </div>
           </div>
-          <GalleryCarousel ref="galleryRef" :gallery="project.gallery ?? []" @image-click="onGalleryImageClick" />
 
         </section>
       </div>

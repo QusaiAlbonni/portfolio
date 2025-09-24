@@ -6,7 +6,7 @@
       </header>
 
       <div class="space-y-16">
-        <section v-for="(p, _i) in projects" :key="p.id" :id="p.id" v-reveal="{ threshold: 0.12 }"
+        <section v-for="(p, _i) in projects" :key="p.id" :id="p.id" v-reveal.once="{ threshold: 0.12 }"
           class="scroll-mt-20">
           <ProjectCard :project="p" @skillClick="handleSkillClick" />
         </section>

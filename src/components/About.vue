@@ -50,9 +50,9 @@ defineProps({
   subtitle: { type: String, default: 'Backend / Fullstack • NodeJS + VueJS' },
   skills: {
     type: Array as () => string[],
-    default: () => [
+    default: [
       'nestjs','nodejs','redis','django','python','aws','postgres','mysql','laravel', 'express',
-      'cpp','java','html','css','js','ts','threejs','git','github','vscode','postman','unity','cs'
+      'cpp','java','html','css','js','ts','threejs','git','github','vscode','postman','unity','cs', 'vuejs'
     ]
   }
 })
