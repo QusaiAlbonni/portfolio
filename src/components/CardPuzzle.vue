@@ -121,7 +121,7 @@ function reShuffle() {
         </Timer>
       </div>
       <div class="grid grid-cols-3 md:grid-cols-4 gap-4 mx-8 md:mx-20">
-        <div v-for="card of cards" :key="card.id" class="card h-30 md:h-50 mx-auto" @click="play(card.id)"
+        <div v-for="card of cards" :key="card.id" class="card h-33 md:h-50 mx-auto" @click="play(card.id)"
           :class="card.revealed ? 'flipped' : ''">
           <div class="card-inner">
             <div class="card-face card-back-face h-full">
