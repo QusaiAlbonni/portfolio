@@ -50,8 +50,9 @@
         class="mt-3 sm:mt-4 max-w-prose mx-auto text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-200/90 italic">
         {{ quote }}
       </p>
+      <DownloadButton class="my-3"></DownloadButton>
 
-      <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+      <div class=" sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
         <a href="#projects"
           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold
                  bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900
@@ -96,6 +97,8 @@
 </template>
 
 <script setup lang="ts">
+import DownloadButton from './buttons/DownloadButton.vue';
+
 defineProps({
   name: { type: String, default: 'Your Name' },
   role: { type: String, default: 'Frontend Developer' },

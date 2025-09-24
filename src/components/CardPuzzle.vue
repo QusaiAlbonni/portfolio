@@ -106,7 +106,7 @@ function reShuffle() {
   <div class="relative">
     <div class="max-w-3xl mx-auto bg-transparent backdrop-blur-lg p-2 rounded-2xl shadow-lg">
       <div>
-        <Timer :duration="120" :running="timerControl" @finished="lose" :resetKey="resetTimer">
+        <Timer :duration="60" :running="timerControl" @finished="lose" :resetKey="resetTimer">
           <template #display="{ remaining }">
             <div class="w-full h-48 flex items-center justify-center">
               <div :class="[

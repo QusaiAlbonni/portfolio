@@ -112,7 +112,7 @@ watch(() => props.isDark, (v) => {
             </defs>
 
             <!-- sun behind cloud -->
-            <g transform="translate(65,25) scale(0.6)">
+            <g transform="translate(65,25) scale(0.6)" class="drop-shadow-[0_0_4px_rgba(255,255,0,0.6)]">
               <!-- glow -->
               <circle cx="0" cy="0" r="26" fill="url(#sunGradient)" opacity="0.7" />
               <!-- core -->
@@ -152,7 +152,7 @@ watch(() => props.isDark, (v) => {
 
           <!-- LIGHT: small bright spark -->
           <svg v-else-if="item.type === 'spark'" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-            class="w-full h-full">
+            class="w-full h-full drop-shadow-[0_0_4px_rgba(255,255,0,0.6)]">
             <defs>
               <radialGradient id="sparkGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="#FFF7D6" stop-opacity="1" />
@@ -167,7 +167,7 @@ watch(() => props.isDark, (v) => {
 
           <!-- DARK: crescent + tiny accent star -->
           <svg v-else-if="item.type === 'crescent'" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-            class="w-full h-full">
+            class="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
             <path d="
             M42,17.5
             A21,21 0 1,0 42,52.5
@@ -182,7 +182,7 @@ watch(() => props.isDark, (v) => {
 
 
           <!-- DARK: small star -->
-          <svg v-else viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <svg v-else viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
             <path d="M12 2l2.6 6.6L21 11l-5 3.3L17.2 21 12 17.7 6.8 21 8 14.3 3 11l6.4-2.4z" fill="white" />
           </svg>
         </div>

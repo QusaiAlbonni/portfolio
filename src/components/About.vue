@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 defineProps({
-  bio: { type: String, default: "I'm a Backend engineer focused on building fast scalable apps ready to solve real issues." },
+  bio: { type: String, default: "Backend developer experienced in building scalable web applications with NestJS, TypeScript, and Django. Skilled in database design, high-performance APIs, asynchronous workflows, and real-time communication. Proficient in Python and JavaScript/TypeScript, with a focus on clean, modular architectures. Hands-on with Docker, CI/CD, and cloud platforms (Fly.io, Render, Railway, AWS). Passionate about delivering impactful, user-focused solutions in collaborative teams." },
   subtitle: { type: String, default: 'Backend / Fullstack • NodeJS + VueJS' },
   skills: {
     type: Array as () => string[],

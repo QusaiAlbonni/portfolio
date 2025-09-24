@@ -1,4 +1,5 @@
 import type { Project } from "../types/project";
+import deltaMd from "../markdown/delta.md?raw";
 
 export const projects: Project[] = [
   {
@@ -18,12 +19,14 @@ export const projects: Project[] = [
     skills: ["threejs", "js", "wasm"],
   },
   {
-    id: "proj-chatters",
-    title: "Realtime Chat App",
-    description:
-      "Real-time chat with presence and typing indicators — built with NestJS and Socket.IO.",
-    img: "/assets/projects/chatters.gif",
-    skills: ["nestjs", "nodejs", "socketio", "ts"],
+    id: "proj-delta-team",
+    title: "Delta Team",
+    description: 'Delta Team is a modern mobile education platform designed to make learning simple, flexible, and accessible.  ',
+    md: deltaMd,
+    img: "/delta/thumbnail.jpg",
+    skills: ["nestjs", "nodejs", "ts", "postgres", "express"],
+    gallery: ['/delta/1.jpg', '/delta/2.jpg', '/delta/3.jpg'],
+    longNotes: 'This project was made in NestJS for a Team of teachers who wanted a solution for their tiring long hours of repeated teaching while still managing to make it easy for students and not need extra payment gateways and complicated setups.'
   },
   {
     id: "proj-crunch",

@@ -2,6 +2,7 @@
 import { reactive, ref } from 'vue'
 import type { SocialLinks } from '../types/social-links';
 import type { Email } from '../types/email';
+import DownloadButton from './buttons/DownloadButton.vue';
 
 const props = defineProps<{
   socialLinks?: SocialLinks
@@ -117,6 +118,8 @@ async function onSubmit() {
           <img :src="skillIconUrl(key)" :alt="key" class="w-5 h-5" />
           <span class="font-medium">{{ key }}</span>
         </a>
+        <span><p class="text-center my-2 text-xs italic">OR</p></span>
+        <DownloadButton></DownloadButton>
       </div>
 
       <div class="border-t border-gray-200 dark:border-slate-700 my-6"></div>

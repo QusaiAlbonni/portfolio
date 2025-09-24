@@ -1,8 +1,10 @@
+
 <script setup lang="ts">
 import GalleryCarousel from './GalleryCarousel.vue';
-import { ref, onMounted, onBeforeUnmount, computed, watch, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed, watch, nextTick, watchEffect, type Ref } from 'vue'
 import type { Project } from '../types/project'
 import Lightbox from './Lightbox.vue'
+import { marked } from 'marked';
 
 const props = defineProps<{ project: Project }>()
 const emit = defineEmits<{ (e: 'skillClick', skill: string): void }>()
@@ -11,9 +13,17 @@ const isVisible = ref(false)
 const showDetails = ref(false)
 const imgStyle = ref<Record<string, string>>({})
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const parsedMd: Ref<string> = ref(props.project.description);
+
+watchEffect(async () => renderMd)
 
 function onSkillClick(skill: string) {
   emit('skillClick', skill)
+}
+
+async function renderMd(){
+  console.log(`project id ${props.project.id}`,props.project.md)
+  parsedMd.value = props.project.md ? await marked(props.project.md) : props.project.description
 }
 
 function openDetails() { showDetails.value = true }
@@ -56,6 +66,7 @@ onMounted(() => {
   )
   observer.observe(root.value)
 })
+onMounted(() => renderMd())
 onBeforeUnmount(() => {
   if (observer && root.value) observer.unobserve(root.value)
 })
@@ -233,7 +244,7 @@ function onGalleryImageClick(index: number) {
           </header>
 
           <div class="mt-4 text-sm text-slate-700 dark:text-slate-200">
-            <p>{{ project.description }}</p>
+            <div v-html="parsedMd" class="markdown-body !rounded-xl p-5 !bg-transparent !text-slate-700 dark:!text-slate-200" ></div>
 
             <div class="mt-4">
               <h5 class="font-medium mb-2">Skills</h5>

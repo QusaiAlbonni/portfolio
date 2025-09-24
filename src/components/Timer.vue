@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onBeforeUnmount, defineProps, defineEmits, toRefs, getCurrentInstance, type WritableComputedRef } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, toRefs, getCurrentInstance, type WritableComputedRef } from 'vue'
 
 const props = defineProps({
   duration: { type: Number, required: true }, // seconds
