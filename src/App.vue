@@ -5,12 +5,16 @@ import About from './components/About.vue';
 import Contact from './components/Contact.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
 import Sky from './components/Sky.vue';
+import CardPuzzle from './components/CardPuzzle.vue';
 import { ref, onMounted, watch } from 'vue'
 import { projects } from './data/projects';
 import { socialLinks } from './data/social-links';
 import { contact } from './api/contact';
+import { dummyCards } from './data/cards';
 
 const isDark = ref(false)
+
+const playGame = ref(false);
 
 const name = 'Qusay Albonni'
 const role = 'Backend dev'
@@ -49,19 +53,28 @@ function updateBodyClass() {
   if (isDark.value) html.classList.add('dark')
   else html.classList.remove('dark')
 }
+
+function startGame() {
+  playGame.value = true;
+  window.location.hash = '';
+  window.location.hash = 'game';
+}
 </script>
 
 <template>
   <div>
     <Sky :isDark="isDark" />
     <Header :isDark="isDark" @toggleTheme="toggleTheme" />
-    <Hero :name="name" :role="role" :quote="quote" :imgSrc="imgSrc" :isDark="isDark" @toggleTheme="toggleTheme" />
+    <Hero :name="name" :role="role" :quote="quote" :imgSrc="imgSrc" :isDark="isDark" @toggleTheme="toggleTheme"
+      @activate-game="startGame" />
     <main>
       <About @skillClick="findNearestProjectBySkill" />
       <ProjectsSection :projects="projects" @skillClick="findNearestProjectBySkill"
         githubUrl="https://github.com/QusaiAlbonni"></ProjectsSection>
-      <Contact :socialLinks="socialLinks" email="albonniqusai@gmail.com" :sendEmail="contact"/>
+      <Contact :socialLinks="socialLinks" email="albonniqusai@gmail.com" :sendEmail="contact" />
+      <section id="game">
+        <CardPuzzle v-if="playGame" :cards="dummyCards" />
+      </section>
     </main>
-
   </div>
 </template>
