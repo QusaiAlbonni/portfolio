@@ -88,7 +88,7 @@
           {{ isDark ? '☀️ Light' : '🌙 Dark' }}
         </button>
       </div>
-      <p class="mt-3 sm:mt-4 max-w-prose mx-auto text-xs sm:text-xs md:text-xs text-gray-600 dark:text-gray-200/90 italic hover:cursor-pointer hover:text-yellow-500"
+      <p class="mt-3 sm:mt-4 max-w-prose mx-auto text-xs sm:text-xs md:text-xs text-gray-600 dark:text-gray-200/90 italic underline hover:cursor-pointer hover:text-yellow-500"
         @click="$emit('activate-game')">
         Idk, I just wanna play a game.
       </p>
