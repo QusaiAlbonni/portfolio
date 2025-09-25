@@ -21,7 +21,6 @@ function onSkillClick(skill: string) {
 }
 
 async function renderMd() {
-  console.log(`project id ${props.project.id}`, props.project.md)
   parsedMd.value = props.project.md ? await marked(props.project.md) : props.project.description
 }
 

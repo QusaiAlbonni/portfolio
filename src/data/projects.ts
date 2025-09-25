@@ -2,6 +2,7 @@ import type { Project } from "../types/project";
 import deltaMd from "../markdown/delta.md?raw";
 import rahalMd from "../markdown/rahal.md?raw";
 import chattersMd from "../markdown/chatters.md?raw";
+import elegantMd from "../markdown/elegant.md?raw";
 
 export const projects: Project[] = [
   {
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     description:
       "Delta Team is a modern mobile education platform designed to make learning simple, flexible, and accessible.  ",
     md: deltaMd,
-    img: "/delta/thumbnail.jpg",
+    img: "/delta/logo.png",
     skills: ["nestjs", "nodejs", "ts", "postgres", "express"],
     gallery: ["/delta/1.jpg", "/delta/2.jpg", "/delta/3.jpg"],
     longNotes:
@@ -58,6 +59,32 @@ export const projects: Project[] = [
       "/chatters/5.png",
     ],
     repoUrl: "https://github.com/QusaiAlbonni/chatters",
-    skills: ["django", "python", "postgres", "aws", "vuejs", "ts"],
+    skills: [
+      "django",
+      "python",
+      "postgres",
+      "aws",
+      "vuejs",
+      "ts",
+      "html",
+      "css",
+    ],
+  },
+  {
+    id: "proj-elegant",
+    title: "Elegant Store",
+    description:
+      "Elegant store is an ecommerce platform with a nice elegant look and feel.",
+    md: elegantMd,
+    img: "/elegant/logo.jpg",
+    gallery: [
+      "/elegant/thumbnail.jpg",
+      "/elegant/1.jpg",
+      "/elegant/2.jpg",
+      "/elegant/3.jpg",
+      "/elegant/4.jpg",
+      "/elegant/5.jpg",
+    ],
+    skills: ["django", "python", "postgres", "redis"],
   },
 ];

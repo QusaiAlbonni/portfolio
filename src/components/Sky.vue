@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, type Ref } from 'vue'
+import { useDevice } from '../composables/use-device';
 
 const props = defineProps({
   isDark: { type: Boolean, default: false }
@@ -7,6 +8,8 @@ const props = defineProps({
 
 const items: Ref<any> = ref([])
 let idCounter = 0
+
+const { isMobile } = useDevice(768);
 
 const largeCloudDur1 = ref(60)
 const largeCloudDur2 = ref(90)
@@ -51,7 +54,8 @@ function makeItem(isDark: boolean) {
 }
 
 function generateItems(isDark: boolean) {
-  const count = isDark ? 30 : 30
+  let count = isDark ? 30 : 30;
+  count = isMobile.value ? count / 2 : count;
   items.value = []
   for (let i = 0; i < count; i++) items.value.push(makeItem(isDark))
 }
@@ -182,7 +186,8 @@ watch(() => props.isDark, (v) => {
 
 
           <!-- DARK: small star -->
-          <svg v-else viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+          <svg v-else viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+            class="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
             <path d="M12 2l2.6 6.6L21 11l-5 3.3L17.2 21 12 17.7 6.8 21 8 14.3 3 11l6.4-2.4z" fill="white" />
           </svg>
         </div>

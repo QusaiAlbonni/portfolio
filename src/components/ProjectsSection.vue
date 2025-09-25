@@ -3,6 +3,7 @@
     <div class="max-w-6xl mx-auto space-y-12">
       <header class="text-center">
         <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-gray-100">Projects</h2>
+        <p class="text-xs md:text-lg text-gray-600 dark:text-gray-400">Click on Details to view more info and app images.</p>
       </header>
 
       <div class="space-y-16">
