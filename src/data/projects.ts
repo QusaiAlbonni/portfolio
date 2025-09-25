@@ -77,6 +77,7 @@ export const projects: Project[] = [
       "Elegant store is an ecommerce platform with a nice elegant look and feel.",
     md: elegantMd,
     img: "/elegant/logo.jpg",
+    repoUrl: "https://github.com/QusaiAlbonni/quakstore",
     gallery: [
       "/elegant/thumbnail.jpg",
       "/elegant/1.jpg",
