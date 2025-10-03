@@ -9,16 +9,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/express": "^5.0.3",
     "@vueuse/motion": "^3.0.3",
     "axios": "^1.12.2",
     "color": "^5.0.2",
+    "express": "^5.1.0",
     "github-markdown-css": "^5.8.1",
     "marked": "^16.3.0",
     "resend": "^6.1.0",
+    "serverless-http": "^4.0.0",
     "vue": "^3.5.21",
     "vue-typed-js": "^0.1.2"
   },
   "devDependencies": {
+    "@netlify/functions": "^4.2.7",
     "@tailwindcss/vite": "^4.1.13",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.7.0",

@@ -39,8 +39,12 @@ function toggleTheme() {
 }
 
 function findNearestProjectBySkill(skill: string) {
+  return projects.find(project => project.skills.includes(skill))?.id ?? null;
+}
+
+function redirectBySkill(skill: string){
   window.location.hash = '';
-  const projectId: string | null = projects.find(project => project.skills.includes(skill))?.id ?? null;
+  const projectId: string | null = findNearestProjectBySkill(skill);
   if (!projectId) {
     window.location.hash = "more"
     return
@@ -68,8 +72,8 @@ function startGame() {
     <Hero :name="name" :role="role" :quote="quote" :imgSrc="imgSrc" :isDark="isDark" @toggleTheme="toggleTheme"
       @activate-game="startGame" />
     <main>
-      <About @skillClick="findNearestProjectBySkill" />
-      <ProjectsSection :projects="projects" @skillClick="findNearestProjectBySkill"
+      <About @skillClick="redirectBySkill" />
+      <ProjectsSection :projects="projects" @skillClick="redirectBySkill"
         githubUrl="https://github.com/QusaiAlbonni"></ProjectsSection>
       <Contact :socialLinks="socialLinks" email="albonniqusai@gmail.com" :sendEmail="contact" />
       <section id="game">
