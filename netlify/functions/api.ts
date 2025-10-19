@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction, Router } from "express";
 import serverless from "serverless-http";
 import { Resend } from "resend";
+import { Handler } from "@netlify/functions";
 
 const api = express();
 

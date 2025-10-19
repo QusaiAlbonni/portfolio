@@ -1,5 +1,7 @@
 import { Resend } from "resend";
-
+/**
+ * @deprecated
+ */
 export async function handler(event, context) {
   const allowedOrigin =
     process.env.SITE_URL || "https://qusayalbonniportfolio.netlify.app";
