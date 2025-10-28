@@ -39,6 +39,7 @@ export const projects: Project[] = [
     img: "/delta/logo.png",
     skills: ["nestjs", "nodejs", "ts", "postgres", "express"],
     gallery: ["/delta/1.jpg", "/delta/2.jpg", "/delta/3.jpg"],
+    repoUrl: "https://github.com/QusaiAlbonni/delta",
     longNotes:
       "This project was made in NestJS for a Team of teachers who wanted a solution for their tiring long hours of repeated teaching while still managing to make it easy for students and not need extra payment gateways and complicated setups.",
   },
