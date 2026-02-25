@@ -17,7 +17,7 @@ const isDark = ref(false)
 const playGame = ref(false);
 
 const name = 'Qusay Albonni'
-const role = 'Backend dev'
+const role = 'Software Engineer'
 const quote = 'Ship fast. Learn faster.'
 const imgSrc = '/pfp.jpg'
 
