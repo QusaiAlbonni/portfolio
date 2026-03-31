@@ -52,7 +52,7 @@ defineProps({
     type: Array as () => string[],
     default: [
       'nestjs','nodejs','redis','django','python','aws','postgres','mysql','laravel', 'express',
-      'cpp','java','html','css','js','ts','threejs','git','github','vscode','postman','unity','cs', 'vuejs'
+      'cpp','java','html','css','js','ts','threejs','git','github','vscode','postman','unity','cs', 'vuejs', 'fastapi'
     ]
   }
 })

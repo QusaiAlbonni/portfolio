@@ -3,6 +3,7 @@ import deltaMd from "../markdown/delta.md?raw";
 import rahalMd from "../markdown/rahal.md?raw";
 import chattersMd from "../markdown/chatters.md?raw";
 import elegantMd from "../markdown/elegant.md?raw";
+import jobhunter from "../markdown/job-hunter.md?raw";
 
 export const projects: Project[] = [
   {
@@ -28,6 +29,7 @@ export const projects: Project[] = [
       "nodejs",
       "redis",
       "tile38",
+      "aws",
     ],
   },
   {
@@ -37,7 +39,7 @@ export const projects: Project[] = [
       "Delta Team is a modern mobile education platform designed to make learning simple, flexible, and accessible.  ",
     md: deltaMd,
     img: "/delta/logo.png",
-    skills: ["nestjs", "nodejs", "ts", "postgres", "express"],
+    skills: ["nestjs", "nodejs", "ts", "postgres", "express", "docker"],
     gallery: ["/delta/1.jpg", "/delta/2.jpg", "/delta/3.jpg"],
     repoUrl: "https://github.com/QusaiAlbonni/delta",
     longNotes:
@@ -88,5 +90,21 @@ export const projects: Project[] = [
       "/elegant/5.jpg",
     ],
     skills: ["django", "python", "postgres", "redis"],
+  },
+  {
+    id: "job-hunter",
+    title: "Job Hunter Telegram Bot",
+    description: "A Telegram bot that helps users find job opportunities.",
+    md: jobhunter,
+    img: "/job-hunter/logo.png",
+    demoUrl: 'https://t.me/sy_job_hunter_bot',
+    repoUrl: 'https://github.com/QusaiAlbonni/job_finder_tele_bot',
+    skills: [
+      "python",
+      "postgres",
+      "fastapi",
+      "redis",
+      "docker",
+    ],
   },
 ];
